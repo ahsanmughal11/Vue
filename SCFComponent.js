@@ -1,4 +1,6 @@
 
 export default {
-  template: `<h2>Hello from SCFComponent!</h2>`
+    props: ['title', 'content'],
+  template: `<h2>{{ title }}</h2>
+            <p>{{ content }}</p>`
 }
