@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,61 +8,79 @@
     <script src="https://unpkg.com/vue@3"></script>
 </head>
 <style>
-    body{
+    body {
         font-family: Arial, Helvetica, sans-serif;
         padding: 0;
         margin: 0;
         box-sizing: border-box;
     }
-    .primary{
+
+    .primary {
         color: white;
         background-color: blue;
         padding: 10px;
         border-radius: 5px;
         margin: 10px;
     }
-    .secondary{
+
+    .secondary {
         color: white;
         background-color: gray;
         padding: 10px;
         border-radius: 5px;
         margin: 10px;
     }
-
 </style>
+
 <body>
     <div id="app">
-    <input type="text" v-model="greeting">
-    <p>{{ greeting }} {{ greeting.length }}</p> 
-    <p v-if="greeting.length > 10">Text is too long</p>
+        <input type="text" v-model="greeting">
+        <p>{{ greeting }} {{ greeting.length }}</p>
+        <p v-if="greeting.length > 10">Text is too long</p>
 
-    <!-- Attribute Binding -->
-    <button :class="buttonClasses" @click="toggleClass">Click Me</button>
-    <button class="primary">Click Me</button>
-    <button :class="greeting.length > 10 ? 'primary' : 'secondary'">Danger</button>
-    <button v-bind:class="[greeting.length > 10 ? 'primary' : 'secondary']">Warning</button>
+        <!-- Attribute Binding -->
+        <button :class="buttonClasses" @click="toggleClass">Click Me</button>
+        <button class="primary">Click Me</button>
+        <button :class="greeting.length > 10 ? 'primary' : 'secondary'">Danger</button>
+        <button v-bind:class="[greeting.length > 10 ? 'primary' : 'secondary']">Warning</button>
+        
+        <!-- Coputed Properties -->
+        <input type="text" v-model="firstName" placeholder="First Name:">
+        <input type="text" v-model="lastName" placeholder="Last Name:">
+        <p>Your full name is: {{ firstName }} {{ lastName }}</p>
+        <p v-if="fullName.length > 5">Your full name is: {{ fullName }}</p>
+
 
 
 
     </div>
     <script>
         Vue.createApp({
-            data(){
+            data() {
                 return {
                     greeting: 'Helo Gentlemen',
-                    buttonClasses: 'secondary'
+                    buttonClasses: 'secondary',
+                    firstName: '',
+                    lastName: '',
                 }
             },
-            methods:{
-                toggleClass(){
+            methods: {
+                toggleClass() {
                     this.buttonClasses = this.buttonClasses === 'primary' ? 'secondary' : 'primary';
                 }
-
             },
-            mounted(){
-                    // alert('Mounted');
+            computed: {
+                fullName() {
+                    return this.firstName + ' ' + this.lastName;
                 }
+            },
+
+
+            mounted() {
+                // alert('Mounted');
+            }
         }).mount('#app');
-    </script>  
+    </script>
 </body>
+
 </html>
