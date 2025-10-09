@@ -10,6 +10,7 @@
     <div id="app">
     <input type="text" v-model="greeting">
     <p>{{ greeting }} {{ greeting.length }}</p> 
+    <p v-if="greeting.length > 10">Text is too long</p>
     </div>
     <script>
         Vue.createApp({
