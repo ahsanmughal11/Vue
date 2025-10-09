@@ -43,12 +43,39 @@
         <button class="primary">Click Me</button>
         <button :class="greeting.length > 10 ? 'primary' : 'secondary'">Danger</button>
         <button v-bind:class="[greeting.length > 10 ? 'primary' : 'secondary']">Warning</button>
-        
+
         <!-- Coputed Properties -->
         <input type="text" v-model="firstName" placeholder="First Name:">
         <input type="text" v-model="lastName" placeholder="Last Name:">
         <p>Your full name is: {{ firstName }} {{ lastName }}</p>
         <p v-if="fullName.length > 5">Your full name is: {{ fullName }}</p>
+
+        <!-- List -->
+        <div v-if="completedAssignments.length > 0">
+            <p>Completed</p>
+            <ul>
+                <li v-for="assignment in completedAssignments" :key="assignment.id">
+                    <label> {{ assignment.name }}
+                        <input type="checkbox" v-model="assignment.complete">
+                    </label>
+
+                </li>
+            </ul>
+        </div>
+
+        <div v-if="inProgressAssignments.length > 0">
+            <p>In Progress</p>
+            <ul>
+                <li v-for="assignment in inProgressAssignments" :key="assignment.id">
+                    <label>
+                        {{ assignment.name }}
+
+                        <input type="checkbox" v-model="assignment.complete">
+                    </label>
+                </li>
+            </ul>
+        </div>
+
 
 
 
@@ -62,6 +89,12 @@
                     buttonClasses: 'secondary',
                     firstName: '',
                     lastName: '',
+                    assignments: [
+                        { name: 'Math', complete: false, id: 1 },
+                        { name: 'English', complete: false, id: 2 },
+                        { name: 'History', complete: true, id: 3 },
+                        { name: 'Science', complete: true, id: 4 }
+                    ]
                 }
             },
             methods: {
@@ -72,7 +105,14 @@
             computed: {
                 fullName() {
                     return this.firstName + ' ' + this.lastName;
-                }
+                },
+                inProgressAssignments() {
+                    return this.assignments.filter(a => !a.complete);
+                },
+                completedAssignments() {
+                    return this.assignments.filter(a => a.complete);
+                },
+
             },
 
 
