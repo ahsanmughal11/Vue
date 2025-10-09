@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Components</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+
+<body>
+
+
+    <div id="app">
+        <my-component>
+            <template #icon>
+                Hello SLot
+            </template>
+        </my-component>
+
+    </div>
+    <script>
+        Vue.createApp({
+            components:{
+                'my-component': {
+                    template: `<h1>Hello</h1><slot name="icon"/>`,
+                }
+
+            },
+            data() {
+                return {
+                    // msg: 'Hello'
+                }
+            }
+        }).mount('#app');
+    </script>
+</body>
+
+</html>
