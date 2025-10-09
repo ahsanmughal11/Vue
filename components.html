@@ -17,14 +17,16 @@
                 Hello SLot
             </template>
         </my-component>
-
+        <scf-component></scf-component>
     </div>
-    <script>
+    <script type="module">
+        import SCFComponent from './SCFComponent.js';
         Vue.createApp({
             components:{
                 'my-component': {
                     template: `<h1>Hello</h1><slot name="icon"/>`,
-                }
+                },
+                'scf-component': SCFComponent
 
             },
             data() {
