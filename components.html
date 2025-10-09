@@ -6,6 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Components</title>
     <script src="https://unpkg.com/vue@3"></script>
+    <style>
+        .primary {
+            color: white;
+            background-color: blue;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px;
+        }
+    </style>
 </head>
 
 <body>
@@ -18,15 +27,18 @@
             </template>
         </my-component>
         <scf-component title="Reference" content="Lorem ipsum temp web pow" :counting="9" :arrayprop="['Ahsan', 'F16']"></scf-component>
+        <my-button btn-class="primary"></my-button>
     </div>
     <script type="module">
         import SCFComponent from './SCFComponent.js';
+        import MyButton from './myButton.js';
         Vue.createApp({
             components:{
                 'my-component': {
                     template: `<h1>Hello</h1><slot name="icon"/>`,
                 },
-                'scf-component': SCFComponent
+                'scf-component': SCFComponent,
+                'my-button': MyButton
 
             },
             data() {
