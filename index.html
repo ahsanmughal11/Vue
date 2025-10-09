@@ -36,7 +36,7 @@
     <p v-if="greeting.length > 10">Text is too long</p>
 
     <!-- Attribute Binding -->
-    <button :class="buttonClasses">Click Me</button>
+    <button :class="buttonClasses" @click="toggleClass">Click Me</button>
     <button class="primary">Click Me</button>
     <button :class="greeting.length > 10 ? 'primary' : 'secondary'">Danger</button>
     <button v-bind:class="[greeting.length > 10 ? 'primary' : 'secondary']">Warning</button>
@@ -51,6 +51,12 @@
                     greeting: 'Helo Gentlemen',
                     buttonClasses: 'secondary'
                 }
+            },
+            methods:{
+                toggleClass(){
+                    this.buttonClasses = this.buttonClasses === 'primary' ? 'secondary' : 'primary';
+                }
+
             },
             mounted(){
                     // alert('Mounted');
