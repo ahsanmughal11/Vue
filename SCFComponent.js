@@ -1,6 +1,14 @@
 
 export default {
-    props: ['title', 'content'],
-  template: `<h2>{{ title }}</h2>
-            <p>{{ content }}</p>`
+ props: {
+  title: {
+    type: String,
+    required: true
+   },
+  content: {
+   type: String,
+   required: true
+   }
+  },
+ template: '<h2>{{ title }}</h2><p>{{ content }}</p>'
 }
