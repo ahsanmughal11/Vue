@@ -77,7 +77,7 @@
                     </li>
                 </ul>
             </div>
-            <add-assignment :assignments="assignments"></add-assignment>
+            <add-assignment @add="add" v-model="newAssignment"></add-assignment>
 
         </section>
 
@@ -110,6 +110,14 @@
                 toggleClass() {
                     this.buttonClasses = this.buttonClasses === 'primary' ? 'secondary' : 'primary';
                 },
+                add(name) {
+                    this.assignments.push(
+                        {
+                            name: name,
+                            complete: false,
+                            id: this.assignments.length + 1
+                        })
+                }
             },
             computed: {
                 fullName() {
