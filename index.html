@@ -51,30 +51,39 @@
         <p v-if="fullName.length > 5">Your full name is: {{ fullName }}</p>
 
         <!-- List -->
-        <div v-if="completedAssignments.length > 0">
-            <p>Completed</p>
-            <ul>
-                <li v-for="assignment in completedAssignments" :key="assignment.id">
-                    <label> {{ assignment.name }}
-                        <input type="checkbox" v-model="assignment.complete">
-                    </label>
+        <section
+            style="display: flex; justify-content: center; gap: 50px; background-color:aqua; width: 100%; padding: 2rem;">
+            <div style="padding: 1rem; border: 1px solid rgb(53, 50, 43);;" v-if="completedAssignments.length > 0">
+                <p>Completed</p>
+                <ul>
+                    <li v-for="assignment in completedAssignments" :key="assignment.id">
+                        <label> {{ assignment.name }}
+                            <input type="checkbox" v-model="assignment.complete">
+                        </label>
 
-                </li>
-            </ul>
-        </div>
+                    </li>
+                </ul>
+            </div>
 
-        <div v-if="inProgressAssignments.length > 0">
-            <p>In Progress</p>
-            <ul>
-                <li v-for="assignment in inProgressAssignments" :key="assignment.id">
-                    <label>
-                        {{ assignment.name }}
+            <div style="padding: 1rem; border: 1px solid rgb(53, 50, 43);" v-if="inProgressAssignments.length > 0">
+                <p>In Progress</p>
+                <ul>
+                    <li v-for="assignment in inProgressAssignments" :key="assignment.id">
+                        <label>
+                            {{ assignment.name }}
 
-                        <input type="checkbox" v-model="assignment.complete">
-                    </label>
-                </li>
-            </ul>
-        </div>
+                            <input type="checkbox" v-model="assignment.complete">
+                        </label>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <form @submit.prevent="add">
+                    <input type="text" placeholder="New Assignment" v-model="newAssignment">
+                    <button type="submit">Add</button>
+                </form>
+            </div>
+        </section>
 
 
 
@@ -94,12 +103,22 @@
                         { name: 'English', complete: false, id: 2 },
                         { name: 'History', complete: true, id: 3 },
                         { name: 'Science', complete: true, id: 4 }
-                    ]
+                    ],
+                    newAssignment: ''
                 }
             },
             methods: {
                 toggleClass() {
                     this.buttonClasses = this.buttonClasses === 'primary' ? 'secondary' : 'primary';
+                },
+                add() {
+                    this.assignments.push(
+                        {
+                            name: this.newAssignment,
+                            complete: false,
+                            id: this.assignments.length + 1
+                        })
+                    this.newAssignment = '';
                 }
             },
             computed: {
