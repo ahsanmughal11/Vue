@@ -77,12 +77,8 @@
                     </li>
                 </ul>
             </div>
-            <div>
-                <form @submit.prevent="add">
-                    <input type="text" placeholder="New Assignment" v-model="newAssignment">
-                    <button type="submit">Add</button>
-                </form>
-            </div>
+            <add-assignment :assignments="assignments"></add-assignment>
+
         </section>
 
 
@@ -90,9 +86,12 @@
 
 
     </div>
-    <script>
+    <script type="module">
+        import addAssignment from './addAssignment.js';
         Vue.createApp({
-            data() {
+            components:{
+                'add-assignment': addAssignment
+            },data() {
                 return {
                     greeting: 'Helo Gentlemen',
                     buttonClasses: 'secondary',
@@ -111,15 +110,6 @@
                 toggleClass() {
                     this.buttonClasses = this.buttonClasses === 'primary' ? 'secondary' : 'primary';
                 },
-                add() {
-                    this.assignments.push(
-                        {
-                            name: this.newAssignment,
-                            complete: false,
-                            id: this.assignments.length + 1
-                        })
-                    this.newAssignment = '';
-                }
             },
             computed: {
                 fullName() {
