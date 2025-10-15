@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script>
 import WelcomeItem from './WelcomeItem.vue'
 import DocumentationIcon from './icons/IconDocumentation.vue'
 import ToolingIcon from './icons/IconTooling.vue'
@@ -6,12 +6,32 @@ import EcosystemIcon from './icons/IconEcosystem.vue'
 import CommunityIcon from './icons/IconCommunity.vue'
 import SupportIcon from './icons/IconSupport.vue'
 import ReactiveComponent from './ReactiveComponent.vue'
+import showAlert from '@/mixins/alert.js'
 
 const openReadmeInEditor = () => fetch('/__open-in-editor?file=README.md')
+export default {
+  name: 'TheWelcome',
+  components: {
+    WelcomeItem,
+    DocumentationIcon,
+    ToolingIcon,
+    EcosystemIcon,
+    CommunityIcon,
+    SupportIcon,
+    ReactiveComponent
+  },
+  methods: {
+    openReadmeInEditor,
+  },
+  mixins: [showAlert]
+}
+
 </script>
+
 
 <template>
 <ReactiveComponent />
+<button @click="showAlert">Click Me</button>
   <WelcomeItem>
     <template #icon>
       <DocumentationIcon />
