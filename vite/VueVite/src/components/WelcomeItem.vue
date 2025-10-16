@@ -1,4 +1,10 @@
+<script setup>
+import { useAlert } from '../composables/useAlert.js'
+let {showAlert} = useAlert();
+</script>
+
 <template>
+  <button @click="showAlert">Alert</button>
   <div class="item">
     <i>
       <slot name="icon"></slot>
